@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class uiscript : MonoBehaviour
 {
-	[SerializeField] ParticleSystem part;
+	[SerializeField] List<ParticleSystem> list_part;
 	public static uiscript instance;
 	void Awake()
 	{
@@ -30,12 +30,15 @@ public class uiscript : MonoBehaviour
 	{
 
 	}
-	public void PlayParticleSys()
+	public void PlayParticleSys(int num)
 	{	
-		if(!part) return;
+		if(!list_part[num]) 
+		{
+			return;
+		}
 
-		testParticleSystem test = part.gameObject.GetComponent<testParticleSystem>();
-		test.play_part();
+		list_part[num].gameObject.GetComponent<testParticleSystem>().play_part();
+
 
 	}
 }
